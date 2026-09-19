@@ -88,7 +88,7 @@ export default function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const closeBooking = useCallback(() => setBookingOpen(false), []);
   return <>
-    <header><div className="wrap nav"><a className="brand" href="#top" aria-label="爪爪日记首页"><span className="mark">🐾</span>爪爪日记</a><nav aria-label="主导航"><a href="#services">洗护项目</a><a href="#process">安心流程</a><a href="#about">关于我们</a><button className="nav-cta" onClick={() => setBookingOpen(true)}>在线预约</button></nav></div></header>
+    <header><div className="wrap nav"><a className="brand" href="#top" aria-label="爪爪日记首页"><span className="mark">🐾</span>爪爪日记</a><nav aria-label="主导航"><a href="#services">洗护项目</a><a href="#process">安心流程</a><a href="#about">关于我们</a><button className="nav-cta" onClick={() => setBookingOpen(true)}>现在预约</button></nav></div></header>
     <main id="top">
       <Hero openBooking={() => setBookingOpen(true)} />
       <section id="services"><div className="wrap services"><div className="section-head"><div><span className="eyebrow light">OUR SERVICES</span><h2>洗得干净，<br />也照顾小情绪。</h2></div><p>到店后先做皮毛与情绪评估，再根据体型、毛量和实际护理需求确认项目与价格。</p></div><div className="service-grid"><article className="service"><div className="icon">🛁</div><h3>基础净护</h3><p>洗澡、吹干、梳毛、剪甲、耳道与脚底清洁，适合日常定期护理。</p><div className="price">¥88 <small>起</small></div></article><article className="service"><div className="icon">✂️</div><h3>精致造型</h3><p>根据品种、毛质和生活习惯设计好打理的清爽造型。</p><div className="price">¥168 <small>起</small></div></article><article className="service"><div className="icon">🌿</div><h3>深层养护</h3><p>针对干燥、打结或换毛期，提供深层保湿与废毛管理。</p><div className="price">¥128 <small>起</small></div></article></div></div></section>
