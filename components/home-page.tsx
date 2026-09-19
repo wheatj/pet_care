@@ -24,6 +24,15 @@ const initialReviews: Review[] = [
   { id: 3, name: "阿布家长", pet: "柯基 · 阿布", rating: 4, content: "换毛期来做了深层养护，废毛处理得很干净。价格和时长都提前说明，没有额外推销。", date: "2026.08.28" },
 ];
 
+function getTomorrowAtNineThirty() {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(9, 30, 0, 0);
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return `${tomorrow.getFullYear()}-${pad(tomorrow.getMonth() + 1)}-${pad(tomorrow.getDate())}T09:30`;
+}
+
 function Stars({ rating, label }: { rating: number; label?: string }) {
   return <span className="stars" aria-label={label ?? `${rating} 星评价`}>{[1, 2, 3, 4, 5].map((star) => <span key={star} className={star <= rating ? "filled" : ""} aria-hidden="true">★</span>)}</span>;
 }
@@ -135,7 +144,7 @@ function BookingModal({ open, onClose }: { open: boolean; onClose: () => void })
     <div className="modal open" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
       <div className="dialog"><button className="close" aria-label="关闭预约窗口" onClick={close}>×</button>
         {!submitted ? <div className="form-wrap"><h2 id="dialogTitle">预约洗护</h2><p>留下基础信息，我们会尽快与你确认。</p>
-          <form onSubmit={submit}><label htmlFor="pet">宠物昵称</label><input ref={petInput} id="pet" required placeholder="例如：豆包" /><label htmlFor="type">宠物类型</label><select id="type" required defaultValue=""><option value="">请选择</option><option>狗狗</option><option>猫咪</option></select><label htmlFor="contact">联系人</label><input id="contact" aria-label="联系人" autoComplete="name" required placeholder="请输入联系人姓名" /><label htmlFor="phone">手机号</label><input id="phone" type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+\- ]{7,20}" required placeholder="请输入手机号" /><label htmlFor="arrival">期望到店时间</label><input id="arrival" type="datetime-local" required /><button className="primary submit" type="submit">提交预约</button></form>
+          <form onSubmit={submit}><label htmlFor="pet">宠物昵称</label><input ref={petInput} id="pet" required placeholder="例如：豆包" /><label htmlFor="type">宠物类型</label><select id="type" required defaultValue=""><option value="">请选择</option><option>狗狗</option><option>猫咪</option></select><label htmlFor="contact">联系人</label><input id="contact" aria-label="联系人" autoComplete="name" required placeholder="请输入联系人姓名" /><label htmlFor="phone">手机号</label><input id="phone" type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+\- ]{7,20}" required placeholder="请输入手机号" /><label htmlFor="arrival">期望到店时间</label><input id="arrival" type="datetime-local" required defaultValue={getTomorrowAtNineThirty()} /><button className="primary submit" type="submit">提交预约</button></form>
         </div> : <div className="success visible"><div className="big">🐾</div><h3>预约已收到</h3><p>我们会尽快联系你确认具体时间。</p><button className="primary done" onClick={close}>好的</button></div>}
       </div>
     </div>
